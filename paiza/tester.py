@@ -1,11 +1,21 @@
 from subprocess import Popen, PIPE
+import os
 
-f = open("testcase")
 
-for line in f:
-  p = Popen(["python","submit.py"], stdin=PIPE)
-  p.stdin.write(line)
-  p.wait()
+def execute(fileName):
+  f = open(fileName)
+  inputs = f.read()
   
-f.close()
+  p = Popen(["python","submit.py"], stdin=PIPE)
+  p.stdin.write(inputs)
+  p.wait()
+    
+  f.close()
+
+files = os.listdir("./")
+
+for fileName in files:
+  if(fileName.find("testcase") != -1):
+    execute(fileName)
+
 
