@@ -1,0 +1,7 @@
+(kernel HOGE moge)
+
+(HAVE_REF_C 1)
+(HAVE_REF_CPP 0)
+(HAVE_REF_ITK 0)
+
+

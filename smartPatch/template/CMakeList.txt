@@ -1,0 +1,6 @@
+(HAVE_REF_C 1)
+*_(HAVE_REF_CPP 0)
++_(HAVE_REF_IPP 1)
+(HAVE_REF_ITK 0)
+
+hage
