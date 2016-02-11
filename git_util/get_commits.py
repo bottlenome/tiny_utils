@@ -39,8 +39,7 @@ To: %s
 Subject: git hub status %s
 
 %s
-.
-"""
+."""
     day = datetime.datetime.now()
     return template%(mail_addr, day.strftime("%Y/%m/%d %H:%M"), log)
 
