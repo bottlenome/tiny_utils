@@ -1,3 +1,3 @@
-= Tiny Utils =
+# Tiny Utils
 The scripts for bottlenome.
 
