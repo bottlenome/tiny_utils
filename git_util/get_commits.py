@@ -29,9 +29,10 @@ else:
             for j in i["payload"]["commits"]:
                 commit_detail = get_json(j["url"])
                 changed_lines += commit_detail["stats"]["total"]
+    log += "90days summary\n"
     log += "push events:%d\n"%push_event_num
     log += "commits :%d\n"%commits_num
-    log += "lines :%d, average per 90 days :%f\n"%(changed_lines, changed_lines/90.0)
+    log += "total lines :%d, %.1f lines / month\n"%(changed_lines, changed_lines/3.0)
 
 def get_mail_format(log):
     template = """From: urota@mcmp.dip.jp
