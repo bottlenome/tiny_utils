@@ -1,0 +1,14 @@
+snippet			importargparse
+abbr				import argparse ...
+options			head
+	import argparse
+
+	def main(args):
+		${1:pass}
+
+	if __name__=='__main__':
+		parser = argparse.ArgumentParser(description='${0:module description}')
+		#parser.add_argument('--some arg', '-s', default=-1, type=int,
+		#                    help='some argument')
+		args = parser.parse_args()
+		main(args)
