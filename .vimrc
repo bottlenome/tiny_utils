@@ -20,6 +20,7 @@ highlight PmenuSbar ctermbg=4
 set path+=/opt/local/include/
 set path+=/opt/local/include/opencv
 set hlsearch
+"set foldmethod=indent
 
 set runtimepath+=~/.vim/bundle/neobundle.vim/
 
@@ -61,7 +62,7 @@ if neobundle#is_installed('neocomplcache')
       let g:neocomplcache_keyword_patterns = {}
   endif
   let g:neocomplcache_keyword_patterns._ = '\h\w*'
-  let g:neocomplcache_enable_camel_case_completion = 1
+  let g:neocomplcache_enable_camel_case_completion = 0
   let g:neocomplcache_enable_underbar_completion = 1
 endif
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -84,3 +85,5 @@ if has('conceal')
   set conceallevel=2 concealcursor=i
 endif
 
+" For my snipeets
+let g:neosnippet#snippets_directory='~/.vim/bundle/neosnippet-snippets/snipeets'
