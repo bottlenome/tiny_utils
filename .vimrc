@@ -1,9 +1,13 @@
 colorscheme desert
 syntax on
 
+set clipboard=exclude:.*
+
 set encoding=utf-8
 set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
+set ambiwidth=double
 
+set backspace=indent,eol,start
 set number
 set expandtab
 set autoindent
@@ -20,6 +24,8 @@ highlight PmenuSbar ctermbg=4
 set path+=/opt/local/include/
 set path+=/opt/local/include/opencv
 set hlsearch
+set spell
+set ruler
 "set foldmethod=indent
 
 set runtimepath+=~/.vim/bundle/neobundle.vim/
