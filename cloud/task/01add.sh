@@ -1,7 +1,7 @@
 #!/bin/bash
 # -*- coding: utf-8 -*-
 abs_path=$(cd $(dirname $0) && pwd)
-prefix_path=$(cd ${abs_path}/../ && pwd)
+prefix_path=/root/work/deploy
 
 NEWSERVERS="newservers.txt"
 

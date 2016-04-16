@@ -3,8 +3,7 @@
 
 NEWSERVER="newservers.txt"
 
-abs_path=$(cd $(dirname $0) && pwd)
-prefix_path=$(cd ${abs_path}/../ && pwd)
+prefix_path=/root/work/deploy
 
 count=$1
 
@@ -14,7 +13,7 @@ if [ ! "${count}" ]; then
 fi
 
 # launch instance
-echo "" > ${NEWSERVER}
+rm -f ${NEWSERVER}
 instance_ids=
 for ((i=0; $i < ${count}; i++)); do
   instance_id="$(${prefix_path}/bin/deploy instances launch web)"
