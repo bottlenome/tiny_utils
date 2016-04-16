@@ -3,8 +3,7 @@
 
 OLDSERVERS="oldservers.txt"
 
-abs_path=$(cd $(dirname $0) && pwd)
-prefix_path=$(cd ${abs_path}/../ && pwd)
+prefix_path=/root/work/deploy
 
 echo "terminate instance"
 

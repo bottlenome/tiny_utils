@@ -7,8 +7,7 @@ OLDSERVERS="oldservers.txt"
 NEWSERVERS="newservers.txt"
 
 #save old servers
-rm -f ${OLDSERVERS}
-#TODO
+mco find -I /web.*/ | sed -e "s/web.//" | sed -e "s/.nii.localdomain//" > ${OLDSERVERS}
 
 #create new servers
 ./new_add_webnode_count.sh 2
