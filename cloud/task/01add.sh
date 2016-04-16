@@ -3,8 +3,14 @@
 abs_path=$(cd $(dirname $0) && pwd)
 prefix_path=/root/work/deploy
 
+OLDSERVERS="oldservers.txt"
 NEWSERVERS="newservers.txt"
 
+#save old servers
+rm -f ${OLDSERVERS}
+#TODO
+
+#create new servers
 ./new_add_webnode_count.sh 2
 cat ${NEWSERVERS} | while read LINE
 do
@@ -12,15 +18,17 @@ do
   ./deploy_war.sh ${LINE}
 done
 
+# settting for lb server
 # update nginx
 echo "start nginx"
 
 # create nginx.conf
 echo "create nginx.conf"
 output_dir=/var/tmp
+rm -f ${output_dir}/nginx/nginx.ipset
 cat ${NEWSERVERS} | while read LINE
 do
-mco facts ipaddress -F fqdn=/^web.$LINE/ -j | ${prefix_path}/bin/retrieve ip mco --format file > ${output_dir}/nginx/nginx.ipset
+mco facts ipaddress -F fqdn=/^web.$LINE/ -j | ${prefix_path}/bin/retrieve ip mco --format file >> ${output_dir}/nginx/nginx.ipset
 done
 echo "output file: ${output_dir}/nginx/nginx.ipset"
 
