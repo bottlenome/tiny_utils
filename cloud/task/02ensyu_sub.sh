@@ -79,8 +79,12 @@ done
 COMMENTOUT
 
 # restart the tomcat to run war file that was distributed <<== new
+
+for instance_id in $instance_ids; do
   ipaddr="$(${prefix_path}/bin/deploy instances describe ${instance_id})"
   ${prefix_path}/bin/deploy ssh exec ${ipaddr} "/etc/init.d/tomcat6 stop"
+  echo " stop tomcat ${instance_id} "
+done
 
 # work around reflesh ganglia.
 # restart ganglia-monitor

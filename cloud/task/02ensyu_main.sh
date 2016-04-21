@@ -16,9 +16,9 @@ echo "start"
 # read old server server id
 cat ${OLDSERVERS} | while read LINE
 do
-  echo "1_stop webnode ${LINE}"
+  echo "1_stop webnode ${LINE} start "
   ./02ensyu_sub.sh ${LINE}
-  echo "2_stop webnode ${LINE}"
+  echo "2_stop webnode ${LINE} end "
 done
 
 echo "finish"
