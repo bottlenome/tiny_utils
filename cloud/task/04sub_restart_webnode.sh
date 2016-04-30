@@ -77,7 +77,7 @@ output_dir=/var/tmp
 ######### fuji_test #######
 ## 引数に渡されたoldserverのインスタンスIDを対象にする
 ## mco facts ipaddress -F fqdn=/^web/ -j | ${prefix_path}/bin/retrieve ip mco --format file > ${output_dir}/nginx/nginx.ipset
-mco facts ipaddress -F fqdn=/*web*${instance_id}*/ -j | ${prefix_path}/bin/retrieve ip mco --format file > ${output_dir}/nginx/nginx.ipset
+mco facts ipaddress -F fqdn=/.*web.*${instance_id}.*/ -j | ${prefix_path}/bin/retrieve ip mco --format file > ${output_dir}/nginx/nginx.ipset
 echo "output file: ${output_dir}/nginx/nginx.ipset"
 
 # refresh nginx.conf of lb server
@@ -97,7 +97,7 @@ echo 'start nagios'
 ######### fuji_test #######
 ## 引数に渡されたoldserverのインスタンスIDを対象にする
 ## mco facts ipaddress -F fqdn=/^web/ -j | ${prefix_path}/bin/retrieve ip mco --format file > ${output_dir}/monitor/web.ipset
-mco facts ipaddress -F fqdn=/*web*${instance_id}*/ -j | ${prefix_path}/bin/retrieve ip mco --format file > ${output_dir}/monitor/web.ipset
+mco facts ipaddress -F fqdn=/.*web.*${instance_id}.*/ -j | ${prefix_path}/bin/retrieve ip mco --format file > ${output_dir}/monitor/web.ipset
 
 head ${output_dir}/monitor/web.ipset
 
@@ -117,6 +117,6 @@ ${prefix_path}/bin/deploy ssh exec monitor.nii.localdomain "service nagios3 star
 ######### fuji_test #######
 ## テキストを読み込んでoldserverを対象とする
 ## mco puppetd disable -F fqdn=/^web/ -v
-mco puppetd disable -F fqdn=/*web*${instance_id}*/ -v
+mco puppetd disable -F fqdn=/.*web.*${instance_id}.*/ -v
 
 

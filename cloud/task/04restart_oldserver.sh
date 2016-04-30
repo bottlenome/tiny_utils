@@ -30,8 +30,8 @@ output_dir=/var/tmp
 rm -f ${output_dir}/nginx/nginx.ipset
 #cat ${OLDSERVERS} | while read LINE
 #do
-mco facts ipaddress -F fqdn=/^web.${LINES[0]}/ -j | ${prefix_path}/bin/retrieve ip mco --format file >> ${output_dir}/nginx/nginx.ipset
-mco facts ipaddress -F fqdn=/^web.${LINES[1]}/ -j | ${prefix_path}/bin/retrieve ip mco --format file >> ${output_dir}/nginx/nginx.ipset
+mco facts ipaddress -F fqdn=/^web.*${LINES[0]}/ -j | ${prefix_path}/bin/retrieve ip mco --format file >> ${output_dir}/nginx/nginx.ipset
+mco facts ipaddress -F fqdn=/^web.*${LINES[1]}/ -j | ${prefix_path}/bin/retrieve ip mco --format file >> ${output_dir}/nginx/nginx.ipset
 #done
 echo "output file: ${output_dir}/nginx/nginx.ipset"
 

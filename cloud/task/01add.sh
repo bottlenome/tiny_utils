@@ -27,7 +27,7 @@ output_dir=/var/tmp
 rm -f ${output_dir}/nginx/nginx.ipset
 cat ${NEWSERVERS} | while read LINE
 do
-mco facts ipaddress -F fqdn=/^web.$LINE/ -j | ${prefix_path}/bin/retrieve ip mco --format file >> ${output_dir}/nginx/nginx.ipset
+mco facts ipaddress -F fqdn=/^web.*$LINE/ -j | ${prefix_path}/bin/retrieve ip mco --format file >> ${output_dir}/nginx/nginx.ipset
 done
 echo "output file: ${output_dir}/nginx/nginx.ipset"
 
