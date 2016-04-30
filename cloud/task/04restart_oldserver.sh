@@ -14,6 +14,9 @@ while read line; do
 	count=$count+1
 done < ${OLDSERVERS}
 
+#reset wep.ipset file
+output_dir=/var/tmp
+rm -f ${output_dir}/monitor/web.ipset
 echo ${LINES[0]}
 ./04sub_restart_webnode.sh ${LINES[0]}
 echo ${LINES[1]}
@@ -26,7 +29,6 @@ echo "start nginx"
 
 # create nginx.conf
 echo "create nginx.conf"
-output_dir=/var/tmp
 rm -f ${output_dir}/nginx/nginx.ipset
 #cat ${OLDSERVERS} | while read LINE
 #do
@@ -37,7 +39,8 @@ echo "output file: ${output_dir}/nginx/nginx.ipset"
 
 # refresh nginx.conf of lb server
 echo "refresh nginx.conf"
-mco puppetd runonce -I lb.nii.localdomain -v
+#mco puppetd runonce -I lb.nii.localdomain -v
+mco puppetd runonce -F fqdn=/^lb/ -v
 
 # restart nginx proccess
 echo "restart nginx"

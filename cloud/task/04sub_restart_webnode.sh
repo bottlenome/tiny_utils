@@ -96,9 +96,8 @@ echo 'start nagios'
 
 ######### fuji_test #######
 ## 引数に渡されたoldserverのインスタンスIDを対象にする
-mco facts ipaddress -F fqdn=/^web/ -j | ${prefix_path}/bin/retrieve ip mco --format file > ${output_dir}/monitor/web.ipset
-#
-#mco facts ipaddress -F fqdn=/.*web.*${instance_id}.*/ -j | ${prefix_path}/bin/retrieve ip mco --format file > ${output_dir}/monitor/web.ipset
+#mco facts ipaddress -F fqdn=/^web/ -j | ${prefix_path}/bin/retrieve ip mco --format file > ${output_dir}/monitor/web.ipset
+mco facts ipaddress -F fqdn=/.*web.*${instance_id}.*/ -j | ${prefix_path}/bin/retrieve ip mco --format file >> ${output_dir}/monitor/web.ipset
 
 head ${output_dir}/monitor/web.ipset
 

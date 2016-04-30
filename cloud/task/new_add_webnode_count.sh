@@ -73,14 +73,15 @@ for instance_id in ${instance_ids}; do
   done
 done
 
+output_dir=/var/tmp
+rm -f ${output_dir}/monitor/web.ipset
 # restart the tomcat to run war file that was distributed
 for instance_id in ${instance_ids}; do
   ipaddr="$(${prefix_path}/bin/deploy instances describe ${instance_id})"
+  echo $ipaddr >> ${output_dir}/monitor/web.ipset
   ${prefix_path}/bin/deploy ssh exec ${ipaddr} "/etc/init.d/tomcat6 stop"
   ${prefix_path}/bin/deploy ssh exec ${ipaddr} "/etc/init.d/tomcat6 start"
 done
-
-output_dir=/var/tmp
 
 # update nginx
 #echo "start nginx"
@@ -104,7 +105,7 @@ yes | mco service ganglia-monitor restart -v
 
 echo 'start nagios'
 # create config nagios
-mco facts ipaddress -F fqdn=/^web/ -j | ${prefix_path}/bin/retrieve ip mco --format file > ${output_dir}/monitor/web.ipset
+#mco facts ipaddress -F fqdn=/^web/ -j | ${prefix_path}/bin/retrieve ip mco --format file > ${output_dir}/monitor/web.ipset
 
 head ${output_dir}/monitor/*.ipset
 

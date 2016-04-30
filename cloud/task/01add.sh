@@ -33,7 +33,8 @@ echo "output file: ${output_dir}/nginx/nginx.ipset"
 
 # refresh nginx.conf of lb server
 echo "refresh nginx.conf"
-mco puppetd runonce -I lb.nii.localdomain -v
+#mco puppetd runonce -I lb.nii.localdomain -v
+mco puppetd runonce -F fqdn=/^lb/ -v
 
 # restart nginx proccess
 echo "restart nginx"
