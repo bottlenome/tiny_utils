@@ -80,12 +80,13 @@ for instance_id in ${instance_ids}; do
   ${prefix_path}/bin/deploy ssh exec ${ipaddr} "/etc/init.d/tomcat6 start"
 done
 
+output_dir=/var/tmp
+
 # update nginx
 #echo "start nginx"
 
 # create nginx.conf
 #echo "create nginx.conf"
-#output_dir=/var/tmp
 #mco facts ipaddress -F fqdn=/^web/ -j | ${prefix_path}/bin/retrieve ip mco --format file > ${output_dir}/nginx/nginx.ipset
 #echo "output file: ${output_dir}/nginx/nginx.ipset"
 
