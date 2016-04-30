@@ -14,6 +14,7 @@ do
 done
 
 #update monitoring condition
+output_dir=/var/tmp
 mco facts ipaddress -F fqdn=/^web/ -j | ${prefix_path}/bin/retrieve ip mco --output file > ${output_dir}/monitor/web.ipset
 
 # refresh nagios config
