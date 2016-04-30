@@ -96,8 +96,9 @@ echo 'start nagios'
 
 ######### fuji_test #######
 ## 引数に渡されたoldserverのインスタンスIDを対象にする
-## mco facts ipaddress -F fqdn=/^web/ -j | ${prefix_path}/bin/retrieve ip mco --format file > ${output_dir}/monitor/web.ipset
-mco facts ipaddress -F fqdn=/.*web.*${instance_id}.*/ -j | ${prefix_path}/bin/retrieve ip mco --format file > ${output_dir}/monitor/web.ipset
+mco facts ipaddress -F fqdn=/^web/ -j | ${prefix_path}/bin/retrieve ip mco --format file > ${output_dir}/monitor/web.ipset
+#
+#mco facts ipaddress -F fqdn=/.*web.*${instance_id}.*/ -j | ${prefix_path}/bin/retrieve ip mco --format file > ${output_dir}/monitor/web.ipset
 
 head ${output_dir}/monitor/web.ipset
 
@@ -108,9 +109,10 @@ mco puppetd runonce -F fqdn=/^monitor/ -v
 mco service gmetad restart -F fqdn=/^monitor/ -v
 
 # next line does not work, so stopping and starting explicitly
-# mco service nagios3 restart -F fqdn=/^monitor/ -v
-${prefix_path}/bin/deploy ssh exec monitor.nii.localdomain "service nagios3 stop"
-${prefix_path}/bin/deploy ssh exec monitor.nii.localdomain "service nagios3 start"
+#mco service nagios3 restart -F fqdn=/^monitor/ -v
+monitor_ip=$(mco facts ipaddress -F fqdn=/^monitor/ -v | ${prefix_path}/bin/retrieve ip mco)
+${prefix_path}/bin/deploy ssh exec ${monitor_ip} "/etc/init.d/nagios3 stop"
+${prefix_path}/bin/deploy ssh exec ${monitor_ip} "/etc/init.d/nagios3 start"
 
 # prevent the automatic update to puppet agent
 
