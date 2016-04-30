@@ -36,7 +36,6 @@ ${prefix_path}/bin/deploy ssh exec ${ipaddr} "rm -fr /var/lib/puppet/ssl/"
 ${prefix_path}/bin/deploy ssh exec ${ipaddr} "/etc/init.d/puppet start"
 ${prefix_path}/bin/deploy ssh exec ${ipaddr} "/etc/init.d/mcollective start"
 ${prefix_path}/bin/deploy ssh exec ${ipaddr} "/etc/init.d/tomcat6 start"
-echo "fujifujifujifujifuji"
 echo 'start puppetca'
 
 ######### fuji_test #######
