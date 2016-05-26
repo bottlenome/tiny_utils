@@ -7,8 +7,7 @@ OLDSERVERS="oldservers.txt"
 NEWSERVERS="newservers.txt"
 
 #save old servers
-rm -f ${OLDSERVERS}
-#TODO
+mco find -I /web.*/ | sed -e "s/web.//" | sed -e "s/.nii.localdomain//" > ${OLDSERVERS}
 
 #create new servers
 ./new_add_webnode_count.sh 2
@@ -28,13 +27,14 @@ output_dir=/var/tmp
 rm -f ${output_dir}/nginx/nginx.ipset
 cat ${NEWSERVERS} | while read LINE
 do
-mco facts ipaddress -F fqdn=/^web.$LINE/ -j | ${prefix_path}/bin/retrieve ip mco --format file >> ${output_dir}/nginx/nginx.ipset
+mco facts ipaddress -F fqdn=/^web.*$LINE/ -j | ${prefix_path}/bin/retrieve ip mco --format file >> ${output_dir}/nginx/nginx.ipset
 done
 echo "output file: ${output_dir}/nginx/nginx.ipset"
 
 # refresh nginx.conf of lb server
 echo "refresh nginx.conf"
-mco puppetd runonce -I lb.nii.localdomain -v
+#mco puppetd runonce -I lb.nii.localdomain -v
+mco puppetd runonce -F fqdn=/^lb/ -v
 
 # restart nginx proccess
 echo "restart nginx"

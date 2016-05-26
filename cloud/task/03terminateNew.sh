@@ -1,7 +1,7 @@
 #!/bin/bash
 # -*- coding: utf-8 -*-
 
-OLDSERVERS="oldservers.txt"
+OLDSERVERS="newservers.txt"
 
 prefix_path=/root/work/deploy
 
@@ -40,5 +40,4 @@ echo "restart nagios"
 monitor_ip=$(mco facts ipaddress -F fqdn=/^monitor/ -v | ${prefix_path}/bin/retrieve ip mco)
 ${prefix_path}/bin/deploy ssh exec ${monitor_ip} "/etc/init.d/nagios3 stop"
 ${prefix_path}/bin/deploy ssh exec ${monitor_ip} "/etc/init.d/nagios3 start"
-
 
