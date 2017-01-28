@@ -1,0 +1,6 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =4
+let g:netrw_dirhist_1='/Users/urota/git/tiny_utils/cpptest/loop'
+let g:netrw_dirhist_2='/Users/urota/git/topse-weka/data'
+let g:netrw_dirhist_3='/Users/urota'
+let g:netrw_dirhist_4='/Users/urota/Applications'

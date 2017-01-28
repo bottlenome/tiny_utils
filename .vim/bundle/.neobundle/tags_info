@@ -1,0 +1,5 @@
+neobundle.vim
+neocomplcache
+neosnippet
+neosnippet-snippets
+syntastic
