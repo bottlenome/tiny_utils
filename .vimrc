@@ -4,7 +4,7 @@ syntax on
 set clipboard=exclude:.*
 
 set encoding=utf-8
-set fileencodings=iso-2022-jp,cp932,sjis,euc-jp,utf-8
+set fileencodings=utf-8,iso-2022-jp,cp932,sjis,euc-jp
 set ambiwidth=double
 
 set backspace=indent,eol,start
@@ -40,12 +40,19 @@ NeoBundleFetch 'Shougo/neobundle.vim'
 NeoBundle has('lua') ? 'Shougo/neocomplete' : 'Shougo/neocomplcache'
 NeoBundle 'Shougo/neosnippet'
 NeoBundle 'Shougo/neosnippet-snippets'
+NeoBundle 'scrooloose/syntastic'
 
 call neobundle#end()
 
 filetype plugin indent on
 
 NeoBundleCheck
+
+"for syntastic
+if executable("clang++")
+  let g:syntastic_cpp_compiler = 'clang++'
+  let g:syntastic_cpp_compiler_options = '--std=c++11 --stdlib=libc++'
+endif
 
 "for neocomplete
 
